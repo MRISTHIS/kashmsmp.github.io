@@ -179,7 +179,7 @@ body {
     background: #3a0000;
 }
 
-/* IFRAME STYLING */
+/* IFRAME (FORM) STYLING */
 iframe {
     border-radius: 6px;
     border: 4px solid #3a5f0b;
@@ -230,21 +230,13 @@ iframe {
         </iframe>
     </div>
 
-    <!-- LIVE LOG VIEWER -->
-    <h2 style="margin-top:40px;">Grail Diary Entries</h2>
+    <!-- AUTO-GENERATED PLAYER ENTRIES -->
+    <h2 style="margin-top:40px;">Player Logs</h2>
+    <div id="dynamicEntries"></div>
 
-    <div class="mc-panel">
-        <iframe 
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSF_j1TF9Wcp-wfDwImD9duBj7MoblqsNS5VXsG-Ft3dcn63_2xgKa9Q5KUenS8vidoVR6rLTVRElH9/pubhtml?widget=true&headers=false"
-            width="100%"
-            height="800"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0">
-        </iframe>
-    </div>
+    <!-- STATIC LORE ENTRY -->
+    <h2 style="margin-top:40px;">Lore Entries</h2>
 
-    <!-- LORE ENTRIES -->
     <div class="entry">
         <div class="entryTitle">ENTRY #001 — Welcome to the Adventure</div>
         <div class="entryContent">
@@ -274,13 +266,20 @@ const splashes = [
 document.getElementById("splash").textContent =
     splashes[Math.floor(Math.random() * splashes.length)];
 
-/* ENTRY TOGGLE */
-document.querySelectorAll(".entry").forEach(entry => {
-    entry.addEventListener("click", () => {
-        const content = entry.querySelector(".entryContent");
-        content.style.display = content.style.display === "block" ? "none" : "block";
+/* TOGGLE FOR STATIC ENTRIES (LORE) */
+function attachEntryToggles() {
+    document.querySelectorAll(".entry").forEach(entry => {
+        if (!entry.dataset.bound) {
+            entry.dataset.bound = "true";
+            entry.addEventListener("click", () => {
+                const content = entry.querySelector(".entryContent");
+                if (!content) return;
+                content.style.display = content.style.display === "block" ? "none" : "block";
+            });
+        }
     });
-});
+}
+attachEntryToggles();
 
 /* SEARCH FILTER */
 document.getElementById("vaultSearch").addEventListener("input", function() {
@@ -290,6 +289,101 @@ document.getElementById("vaultSearch").addEventListener("input", function() {
         entry.style.display = text.includes(term) ? "block" : "none";
     });
 });
+
+/* FETCH CSV FROM GOOGLE SHEETS AND BUILD ENTRIES */
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSF_j1TF9Wcp-wfDwImD9duBj7MoblqsNS5VXsG-Ft3dcn63_2xgKa9Q5KUenS8vidoVR6rLTVRElH9/pub?output=csv";
+
+function parseCSV(text) {
+    const rows = [];
+    let current = "";
+    let inQuotes = false;
+    const lines = text.split("\n");
+
+    for (let line of lines) {
+        let row = [];
+        current = "";
+        inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"' ) {
+                if (inQuotes && line[i+1] === '"') {
+                    current += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (char === ',' && !inQuotes) {
+                row.push(current);
+                current = "";
+            } else {
+                current += char;
+            }
+        }
+        row.push(current);
+        if (row.length > 1 || row[0].trim() !== "") {
+            rows.push(row);
+        }
+    }
+    return rows;
+}
+
+function buildEntriesFromCSV(csvText) {
+    const rows = parseCSV(csvText);
+    if (rows.length < 2) return;
+
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+    const dataRows = rows.slice(1);
+
+    const container = document.getElementById("dynamicEntries");
+    container.innerHTML = "";
+
+    dataRows.reverse().forEach((cols, index) => {
+        if (cols.every(c => c.trim() === "")) return;
+
+        const obj = {};
+        headers.forEach((h, i) => {
+            obj[h] = cols[i] ? cols[i].trim() : "";
+        });
+
+        const timestamp = obj["timestamp"] || "";
+        const player = obj["player name"] || obj["player"] || "Unknown Player";
+        const date = obj["date of entry"] || obj["date"] || "";
+        const log = obj["log entry"] || obj["entry"] || obj["log"] || "";
+
+        const entryDiv = document.createElement("div");
+        entryDiv.className = "entry";
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "entryTitle";
+        titleDiv.textContent = `LOG — ${player}${date ? " — " + date : ""}`;
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "entryContent";
+
+        contentDiv.innerHTML = `
+            ${timestamp ? `<b>Submitted:</b> ${timestamp}<br><br>` : ""}
+            ${log.replace(/\n/g, "<br>")}
+        `;
+
+        entryDiv.appendChild(titleDiv);
+        entryDiv.appendChild(contentDiv);
+        container.appendChild(entryDiv);
+    });
+
+    attachEntryToggles();
+}
+
+fetch(csvUrl)
+    .then(res => res.text())
+    .then(text => {
+        buildEntriesFromCSV(text);
+    })
+    .catch(err => {
+        console.error("Error loading CSV:", err);
+        const container = document.getElementById("dynamicEntries");
+        container.innerHTML = "<div class='mc-panel' style='margin-top:20px;'>Unable to load player logs right now.</div>";
+    });
 </script>
 
 </body>
