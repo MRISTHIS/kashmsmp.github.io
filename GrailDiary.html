@@ -113,7 +113,7 @@ body {
     transform: scale(1.05);
 }
 
-/* KNOWLEDGE VAULT */
+/* VAULT CONTAINER */
 #vaultContainer {
     width: 90%;
     margin: 40px auto;
@@ -179,6 +179,14 @@ body {
     background: #3a0000;
 }
 
+/* IFRAME STYLING */
+iframe {
+    border-radius: 6px;
+    border: 4px solid #3a5f0b;
+    box-shadow: 0 0 0 4px #1e3a05;
+    background: rgba(0,0,0,0.3);
+}
+
 </style>
 </head>
 
@@ -203,97 +211,53 @@ body {
     <a href="Cards.html">Cards</a>
 </div>
 
-<!-- KNOWLEDGE VAULT -->
+<!-- MAIN CONTENT -->
 <div id="vaultContainer">
 
     <input type="text" id="vaultSearch" placeholder="Search the Grail Diary...">
 
-    <!-- ENTRY 1 -->
+    <!-- SUBMISSION FORM -->
+    <h2>Submit a New Log</h2>
+
+    <div class="mc-panel">
+        <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLScinAR0oRoUt8S2myirOFmV-Gy-dqh8e4QEdGdT5nTvXFViBw/viewform?embedded=true" 
+            width="100%" 
+            height="1044" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+        </iframe>
+    </div>
+
+    <!-- LIVE LOG VIEWER -->
+    <h2 style="margin-top:40px;">Grail Diary Entries</h2>
+
+    <div class="mc-panel">
+        <iframe 
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSF_j1TF9Wcp-wfDwImD9duBj7MoblqsNS5VXsG-Ft3dcn63_2xgKa9Q5KUenS8vidoVR6rLTVRElH9/pubhtml?widget=true&headers=false"
+            width="100%"
+            height="800"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0">
+        </iframe>
+    </div>
+
+    <!-- LORE ENTRIES -->
     <div class="entry">
-        <div class="entryTitle">ENTRY #001 — Welcome to the Adventure </div>
+        <div class="entryTitle">ENTRY #001 — Welcome to the Adventure</div>
         <div class="entryContent">
             Day 1.<br><br>
-                To all who step into this world —
-                and the worlds beside it —
-                welcome.
-
-                Here, in the shifting lands of the Kashm SMP,
-                every block placed, every path carved,
-                every mystery uncovered
-                becomes part of a story far older
-                and far stranger
-                than any one timeline can contain.
-
-                This is a realm built by many hands,
-                shaped by countless choices,
-                echoed across infinite versions of itself.
-                A place where time loops,
-                realities collide,
-                and the impossible becomes familiar.
-
-                Within these borders,
-                you may find a quiet village at sunrise…
-                or a fractured sky where lightning rises instead of falls.
-                You may meet friends from your own world…
-                or explorers who swear they’ve met you before
-                in a timeline you don’t remember.
-
-                And somewhere, always watching,
-                the Black Cube hums —
-                a reminder that this universe is only one thread
-                in a tapestry far greater than we can see.
-
-                But do not fear.
-                For this is also a place of joy,
-                of adventure,
-                of discovery.
-                A place where courage matters more than certainty,
-                and curiosity is the greatest tool you can carry.
-
-                So step forward.
-                Build boldly.
-                Question everything.
-                And remember:
-
-                In this multiverse, every traveler is welcome,
-                every mystery is waiting,
-                and every timeline begins with you.
-
-                Welcome to the Kashm SMP.
-                Welcome to the adventure.
+            To all who step into this world — and the worlds beside it — welcome.
+            <br><br>
+            Here, in the shifting lands of the Kashm SMP, every block placed, every path carved, every mystery uncovered becomes part of a story far older and far stranger than any one timeline can contain.
             <br><br>
             A translation attempt produced only one phrase:<br>
             <b>“The Adventure Begins.”</b><br><br>
             Coordinates logged: X:0, Y:0, Z:0
         </div>
     </div>
-
-    <!-- ENTRY 2 -->
-    <!--<div class="entry">
-        <div class="entryTitle">ENTRY #002 — Artifact: Cube Fragment A</div>
-        <div class="entryContent">
-            Recovered from a collapsed mineshaft.<br><br>
-            Material: Unknown  
-            <br>Energy Signature: 14.2 a.u.  
-            <br>Status: ACTIVE<br><br>
-            Scribbled note:  
-            <i>“DON’T LET HIM FIND IT.”</i>
-        </div>
-    </div>-->
-
-    
-    <!-- CORRUPTED ENTRY -->
-     <!--
-    <div class="entry corrupted">
-        <div class="entryTitle">FILE 009 — CORRUPTED</div>
-        <div class="entryContent">
-            █H█E█  █I█S█  █W█A█T█C█H█I█N█G█<br><br>
-            <i>Decryption complete.</i><br><br>
-            The markings match no known language.  
-            They appear to shift when observed.
-        </div>
-    </div>
-    -->
 
 </div>
 
