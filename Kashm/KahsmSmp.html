@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* GLOBAL */
+body {
+    background-color: #000000;
+    background-image: url("i3yosyphyvl31.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-attachment: fixed;
+    cursor: crosshair;
+    font-family: "Silkscreen", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* MINECRAFT PANEL STYLE */
+.mc-panel {
+    background: rgba(34, 255, 34, 0.25);
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    padding: 12px 14px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
+    image-rendering: pixelated;
+}
+
+/* LOGO CENTERED IN HEADER */
+#logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    image-rendering: pixelated;
+    z-index: 20;
+    filter: drop-shadow(4px 4px 0 #C70C02);
+}
+
+/* SPLASH TEXT */
+@keyframes splashBounce {
+    0%   { transform: translateX(-50%) rotate(-10deg) scale(0.9); }
+    50%  { transform: translateX(-50%) rotate(-10deg) scale(1); }
+    100% { transform: translateX(-50%) rotate(-10deg) scale(0.9); }
+}
+
+#splash {
+    position: absolute;
+    top: 60px;
+    left: 60%;
+    transform: translateX(-50%) rotate(-10deg);
+    font-size: 25px;
+    color: #ffff00;
+    text-shadow: 3px 3px #000000;
+    image-rendering: pixelated;
+    z-index: 33;
+    white-space: nowrap;
+    animation: splashBounce 1.5s ease-in-out infinite;
+}
+
+/* HEADER */
+#header {
+    width: 95%;
+    height: 80px;
+    margin: 160px auto 20px auto;
+    font-size: 50px;
+    text-align: left;
+    position: relative;
+}
+
+/* CHARACTER SITTING ON HEADER */
+#siting {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(6px 6px 0 #09010078);
+}
+
+#siting img {
+    width: 150px;
+    image-rendering: pixelated;
+}
+
+/* NAVIGATION BAR */
+#navbar {
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: rgba(34, 255, 34, 0.25);
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
+    image-rendering: pixelated;
+}
+
+#navbar a {
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid #1e3a05;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    transition: 0.15s;
+    image-rendering: pixelated;
+}
+
+#navbar a:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+/* SIDE-BY-SIDE NEWS + REALM STATUS */
+#infoRow {
+    width: 95%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+#News {
+    width: 50%;
+    min-height: 300px;
+    font-size: 20px;
+    text-shadow: 3px 3px #000;
+    color: white;
+}
+
+#testBox {
+    width: 50%;
+    min-height: 300px;
+    padding: 20px;
+}
+
+#test {
+    width: 100%;
+    height: 250px;
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    background: rgba(0,0,0,0.4);
+    box-shadow: 0 0 0 4px #1e3a05;
+}
+
+/* PORTAL BUTTON */
+.portal-wrapper {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+}
+
+.portal-link {
+    display: inline-block;
+    padding: 15px 25px;
+    background: linear-gradient(45deg, purple, violet);
+    border: 4px solid #3a005f;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 24px;
+    text-shadow: 2px 2px #000;
+    text-decoration: none;
+    box-shadow: 0 0 15px purple;
+    transition: 0.2s;
+}
+
+.portal-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px magenta;
+}
+
+</style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header" class="mc-panel">
+        <div id="splash"></div>
+        <img id="logo" src="Kashm.png" alt="Kashm logo">
+        <div id="siting">
+            <img src="Untitled (1000 x 1000 px).png">
+            <img src="lethal.png">
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <div id="navbar">
+        <a href="KahsmSmp.html">Home</a>
+        <a href="News.html">News</a>
+        <a href="rules.html">Rules</a>
+        <a href="GrailDiary.html">Grail Diary</a>
+        <a href="Cards.html">Cards</a>
+    </div>
+
+    <!-- SIDE-BY-SIDE NEWS + REALM STATUS -->
+    <div id="infoRow">
+
+        <div id="News" class="mc-panel">
+            <h2 style="margin-top:0; color:#fff; text-shadow:2px 2px #000;">News</h2>
+            <p style="color:#fff; text-shadow:2px 2px #000;">
+                <ul>
+                    <li>▲▲▲Want your skin to join the club above?▲▲▲<br>
+                Let me know!!!</li>
+                <br>
+
+                <li>Trading Cards are live!!!<br>
+                <a style="color: greenyellow;" href="Cards.html">CLICK HERE!!!</a></li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="mc-panel" id="testBox">
+            <h3 style="color:#fff; text-shadow:2px 2px #000; margin-top:0; text-align:center;">Realm Status</h3>
+            <iframe id="test" src="https://downforeveryoneorjustme.com/minecraft-realms"></iframe>
+        </div>
+
+    </div>
+
+    <!-- ⭐ CENTERED PORTAL BUTTON -->
+    <div class="portal-wrapper">
+        <a href="https://minecraft.wiki/" target="_blank" class="portal-link">
+            Enter the Knowledge Portal
+        </a>
+    </div>
+
+    <!-- SERVER UPTIME -->
+    <div class="mc-panel" style="width:90%; margin:40px auto; text-align:center;">
+        <h2 style="color:#fff; text-shadow:2px 2px #000;">Kahsm SMP has been live for:</h2>
+        <p id="serverUptime" style="font-size:28px; color:#fff; text-shadow:2px 2px #000;"></p>
+    </div>
+
+    <!-- SPLASH TEXT SCRIPT -->
+    <script>
+        const splashes = [
+            "Kashm SMP!",
+            "Now with 100% more cheese!",
+            "Creeper? Aww man!",
+            "Punching trees since 2026!",
+            "Totally not Herobrine!",
+            "Stay blocky!",
+            "Mine, craft, repeat!",
+            "Chicken Jockey!",
+            "I love Creepers, So cute!",
+            "I miss Technoblade :["
+        ];
+
+        document.getElementById("splash").textContent =
+            splashes[Math.floor(Math.random() * splashes.length)];
+    </script>
+
+    <!-- SERVER UPTIME SCRIPT -->
+    <script>
+        function updateUptime() {
+            const startDate = new Date("January 6, 2026 00:00:00");
+            const now = new Date();
+
+            let diff = Math.floor((now - startDate) / 1000);
+
+            const days = Math.floor(diff / 86400);
+            diff %= 86400;
+
+            const hours = Math.floor(diff / 3600);
+            diff %= 3600;
+
+            const minutes = Math.floor(diff / 60);
+            const seconds = diff % 60;
+
+            document.getElementById("serverUptime").textContent =
+                `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        }
+
+        setInterval(updateUptime, 1000);
+        updateUptime();
+    </script>
+
+</body>
+</html>
