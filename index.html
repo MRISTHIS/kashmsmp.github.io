@@ -178,6 +178,24 @@ body {
     box-shadow: 0 0 25px magenta;
 }
 
+    .map-container {
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    margin: 40px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid #444;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
 </style>
 </head>
 
@@ -233,6 +251,8 @@ body {
         </a>
     </div>
 
+    <div class="map-container"> <iframe src="https://www.chunkbase.com/apps/seed-map#seed=1423424450312310524&platform=bedrock_1_21_120&dimension=overworld&x=134&z=-143&zoom=0.873" loading="lazy" allowfullscreen> </iframe> </div>
+
     <!-- SERVER UPTIME -->
     <div class="mc-panel" style="width:90%; margin:40px auto; text-align:center;">
         <h2 style="color:#fff; text-shadow:2px 2px #000;">Kahsm SMP has been live for:</h2>
@@ -285,4 +305,5 @@ body {
 
 </body>
 </html>
+
 
