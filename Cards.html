@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* GLOBAL */
+body {
+    background-color: #000000;
+    background-image: url("i3yosyphyvl31.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-attachment: fixed;
+    cursor: crosshair;
+    font-family: "Silkscreen", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* MINECRAFT PANEL STYLE */
+.mc-panel {
+    background: rgba(34, 255, 34, 0.25);
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    padding: 12px 14px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
+    image-rendering: pixelated;
+}
+
+/* LOGO */
+#logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    filter: drop-shadow(4px 4px 0 #C70C02);
+    z-index: 20;
+}
+
+/* SPLASH TEXT */
+@keyframes splashBounce {
+    0%   { transform: translateX(-50%) rotate(-10deg) scale(0.9); }
+    50%  { transform: translateX(-50%) rotate(-10deg) scale(1); }
+    100% { transform: translateX(-50%) rotate(-10deg) scale(0.9); }
+}
+
+#splash {
+    position: absolute;
+    top: 60px;
+    left: 60%;
+    transform: translateX(-50%) rotate(-10deg);
+    font-size: 25px;
+    color: #ffff00;
+    text-shadow: 3px 3px #000000;
+    animation: splashBounce 1.5s ease-in-out infinite;
+    z-index: 33;
+}
+
+/* HEADER */
+#header {
+    width: 95%;
+    height: 80px;
+    margin: 160px auto 20px auto;
+    position: relative;
+}
+
+/* CHARACTER */
+#siting {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(6px 6px 0 #09010078);
+}
+
+#siting img {
+    width: 150px;
+}
+
+/* NAVBAR */
+#navbar {
+    width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    background: rgba(34, 255, 34, 0.25);
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#navbar a {
+    color: black;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid #1e3a05;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    transition: 0.15s;
+}
+
+#navbar a:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+/* SIMPLE CAROUSEL */
+#carouselContainer {
+    width: 90%;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+
+    background: rgba(34, 255, 34, 0.25);
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    padding: 40px 60px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#carouselTrack {
+    display: flex;
+    gap: 40px;
+    transition: transform 0.3s ease-out;
+}
+
+.cardWrap {
+    text-align: center;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.card {
+    width: 220px;
+    height: 300px;
+    border: 4px solid #3a5f0b;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.2);
+    overflow: hidden;
+    image-rendering: pixelated;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    transform: scale(0.8);
+    opacity: 0.5;
+}
+
+.card.active {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.cardInfo {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+}
+
+/* ARROWS */
+.carouselArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 3px 3px #000;
+    z-index: 10;
+}
+
+#leftArrow {
+    left: 15px;
+}
+
+#rightArrow {
+    right: 15px;
+}
+
+.carouselArrow:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+#honor{
+    color: #ec0c00;
+    text-shadow: 2px 2px #000;
+    font-size: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div id="header" class="mc-panel">
+    <div id="splash"></div>
+    <img id="logo" src="Kashm.png">
+    <div id="siting">
+        <img src="Untitled (1000 x 1000 px).png">
+        <img src="lethal.png">
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<div id="navbar">
+    <a href="index.html">Home</a>
+    <a href="News.html">News</a>
+    <a href="rules.html">Rules</a>
+    <a href="GrailDiary.html">Grail Diary</a>
+    <a href="Cards.html">Cards</a>
+</div>
+
+<!-- SIMPLE CAROUSEL -->
+<div id="carouselContainer">
+
+    <div id="leftArrow" class="carouselArrow">❮</div>
+    <div id="rightArrow" class="carouselArrow">❯</div>
+
+    <div id="carouselTrack">
+
+        <div class="cardWrap">
+            <div class="card"><img src="comingSoon.png"></div>
+            <div class="cardInfo">Creeper • Rare</div>
+        </div>
+
+        <div class="cardWrap">
+            <div class="card"><img src="comingSoon.png"></div>
+            <div class="cardInfo">Zombie • Common</div>
+        </div>
+
+        <div class="cardWrap">
+            <div class="card"><img src="comingSoon.png"></div>
+            <div class="cardInfo">Enderman • Epic</div>
+        </div>
+
+        <div class="cardWrap">
+            <div class="card"><img src="comingSoon.png"></div>
+            <div class="cardInfo">Skeleton • Common</div>
+        </div>
+
+        <div class="cardWrap">
+            <div class="card"><img src="comingSoon.png"></div>
+            <div class="cardInfo">Herobrine • Legendary</div>
+        </div>
+
+      
+
+    </div>
+</div>
+
+<!-- HOW TO BUY CARDS -->
+<div class="mc-panel" style="width:90%; margin:40px auto; font-size:20px;">
+
+    <h2 style="margin-top:0; color:#fff; text-shadow:2px 2px #000;">How to Buy Cards</h2>
+
+    <p style="color:#fff; text-shadow:2px 2px #000;">
+        Want to grow your collection? Want your custom Kashm SMP card?<br>
+        <div id="honor">(This is an honor system, pay what you feel there worth. <br>If you want I will give you your cards free of charge! <br>The prices below are a suggestion.)</div>
+    </p>
+
+    <ul style="color:#fff; text-shadow:2px 2px #000; line-height:28px;">
+        <li><b>Common Cards:</b> $1 each</li>
+        <li><b>Rare Cards:</b> $2 each </li>
+        <li><b>Epic Cards:</b> $3 each</li>
+        <li><b>Legendary Cards:</b> *only available through sever compations and events*</li>
+        <li><b>Mystery Pack (5 random cards):</b> $5 *unavailable</li>
+    </ul>
+
+    <h3 style="color:#fff; text-shadow:2px 2px #000;">How to Purchase</h3>
+    <ol style="color:#fff; text-shadow:2px 2px #000; line-height:28px;">
+        <li>Email me at awfoxwood@gmail.com</li>
+        <li>Tell me if you want a custom card or want to buy cards or packs (will only be available when enough cards are produced)</b>.</li>
+        <li>You the players grow the card index!</li>
+        <li>I'll give you or mail you your cards.</li>
+    </ol>
+
+    <p style="color:#fff; text-shadow:2px 2px #000;">
+       
+    </p>
+
+</div>
+
+
+<!-- SPLASH SCRIPT -->
+<script>
+const splashes = [
+    "Collect them all!",
+    "Ultra Rare Drop!",
+    "Shiny Variant!",
+    "Limited Edition!",
+    "Card Pack Opening!",
+    "Legendary Pull!",
+    "Trade with friends!",
+    "Pixel Power!",
+    "New Cards Added!",
+    "Epic Loot!"
+];
+
+document.getElementById("splash").textContent =
+    splashes[Math.floor(Math.random() * splashes.length)];
+
+/* SIMPLE CAROUSEL SCRIPT */
+const track = document.getElementById("carouselTrack");
+const cards = Array.from(document.querySelectorAll(".card"));
+let index = 0;
+
+function updateCarousel() {
+    const cardWidth = 260; // card width + gap
+    const offset = -index * cardWidth + (track.parentElement.clientWidth - cardWidth) / 2;
+    track.style.transform = `translateX(${offset}px)`;
+
+    cards.forEach((card, i) => {
+        card.classList.toggle("active", i === index);
+    });
+}
+
+document.getElementById("leftArrow").onclick = () => {
+    index = (index - 1 + cards.length) % cards.length;
+    updateCarousel();
+};
+
+document.getElementById("rightArrow").onclick = () => {
+    index = (index + 1) % cards.length;
+    updateCarousel();
+};
+
+updateCarousel();
+</script>
+
+<script>
+let logoClicks = 0;
+
+document.getElementById("logo").addEventListener("click", () => {
+    logoClicks++;
+
+    if (logoClicks === 10) {
+        alert("⬛️The password is the black cube...⬛️");
+    }
+});
+</script>
+
+
+
+</body>
+</html>
