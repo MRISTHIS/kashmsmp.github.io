@@ -155,49 +155,91 @@ body {
     <a href="Cards.html">Cards</a>
 </div>
 
-<!-- LATEST NEWS -->
-<div class="mc-panel" style="width:90%; margin:40px auto;">
-    <h2 class="news-title">🔥 Latest News</h2>
-    <p class="news-text">
-        January 2025 — The Kahsm SMP has launched its new card system! Collect, trade, and show off your cards.
-    </p>
-</div>
+<!-- AUTO NEWS -->
+<div id="newsContainer" style="width:90%; margin:40px auto;"></div>
 
-<!-- NEWS POST 1 -->
-
-<div class="mc-panel" style="width:90%; margin:20px auto;">
-    <h3 class="news-title">⚔Kahsm starts!</h3>
-    <p class="news-date"><b>Date:</b> January 6, 2026</p>
-    <p class="news-text">
-        The server is live!
-    </p>
-</div>
-
-
-<!-- NEWS POST 2 -->
- <!--
-<div class="mc-panel" style="width:90%; margin:20px auto;">
-    <h3 class="news-title">🃏 Card Pack Update</h3>
-    <p class="news-date"><b>Date:</b> January 10, 2025</p>
-    <p class="news-text">
-        New Legendary cards have been added to the Mystery Pack rotation. Good luck pulling them!
-    </p>
-</div>
--->
-
-<!-- NEWS POST 3 -->
- <!--
-<div class="mc-panel" style="width:90%; margin:20px auto;">
-    <h3 class="news-title">👑 Staff Changes</h3>
-    <p class="news-date"><b>Date:</b> January 5, 2025</p>
-    <p class="news-text">
-        We’ve added two new moderators to help keep the server safe and fun.
-    </p>
-</div>
--->
-
-<!-- SPLASH SCRIPT -->
 <script>
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEH2rpLOr4B0Xami7UgcpDBjE0uSskBs_yD3sJnPQeQNEuDxSw2lb6TWtZ7hd7rdK78CTSJwnEq9kV/pub?output=csv";
+
+function parseCSV(text) {
+    const rows = [];
+    let current = "";
+    let inQuotes = false;
+    const lines = text.split("\n");
+
+    for (let line of lines) {
+        let row = [];
+        current = "";
+        inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"' ) {
+                if (inQuotes && line[i+1] === '"') {
+                    current += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (char === ',' && !inQuotes) {
+                row.push(current);
+                current = "";
+            } else {
+                current += char;
+            }
+        }
+        row.push(current);
+        if (row.length > 1 || row[0].trim() !== "") {
+            rows.push(row);
+        }
+    }
+    return rows;
+}
+
+function buildNews(csvText) {
+    const rows = parseCSV(csvText);
+    if (rows.length < 2) return;
+
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+    const dataRows = rows.slice(1);
+
+    const container = document.getElementById("newsContainer");
+    container.innerHTML = "<h2 class='news-title'>🔥 Latest News</h2>";
+
+    dataRows.reverse().forEach(cols => {
+        if (cols.every(c => c.trim() === "")) return;
+
+        const obj = {};
+        headers.forEach((h, i) => {
+            obj[h] = cols[i] ? cols[i].trim() : "";
+        });
+
+        const title = obj["title"] || "Untitled";
+        const date = obj["date"] || "";
+        const content = obj["content"] || "";
+
+        const div = document.createElement("div");
+        div.className = "mc-panel";
+
+        div.innerHTML = `
+            <h3 class="news-title">${title}</h3>
+            <p class="news-date"><b>Date:</b> ${date}</p>
+            <p class="news-text">${content.replace(/\n/g, "<br>")}</p>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+fetch(csvUrl)
+    .then(res => res.text())
+    .then(text => buildNews(text))
+    .catch(err => {
+        document.getElementById("newsContainer").innerHTML =
+            "<div class='mc-panel'>Unable to load news right now.</div>";
+    });
+
+/* SPLASH */
 const splashes = [
     "Breaking News!",
     "Fresh Updates!",
@@ -205,7 +247,7 @@ const splashes = [
     "New Features!",
     "Stay Informed!",
     "Epic Announcements!",
-    "What's New?",
+    "What's New!",
     "Hot Off The Press!",
     "Latest SMP News!",
     "Big Changes!"
