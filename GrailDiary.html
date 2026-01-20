@@ -346,9 +346,12 @@ function buildEntriesFromCSV(csvText) {
         });
 
         const timestamp = obj["timestamp"] || "";
-        const player = obj["player name"] || obj["player"] || "Unknown Player";
+        const player = obj["player name"] || obj["player"] || "";
         const date = obj["date of entry"] || obj["date"] || "";
         const log = obj["log entry"] || obj["entry"] || obj["log"] || "";
+
+        /* ✅ Only show rows that have BOTH a player and a log */
+        if (!player || !log) return;
 
         const entryDiv = document.createElement("div");
         entryDiv.className = "entry";
