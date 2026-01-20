@@ -158,13 +158,19 @@ body {
     opacity: 1;
 }
 
+/* Default for Coming Soon cards */
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     image-rendering: pixelated;
 }
 
+/* Real cards show full artwork */
+.real-card img {
+    object-fit: contain;
+    background: black;
+}
 
 .cardInfo {
     margin-top: 10px;
@@ -204,7 +210,7 @@ body {
     font-size: 15px;
 }
 
-    .char {
+.char {
     position: relative;
     display: inline-block;
     margin: 0 20px;
@@ -234,7 +240,15 @@ body {
 <div id="header" class="mc-panel">
     <div id="splash"></div>
     <img id="logo" src="Kashm.png">
-    <div id="siting"> <div class="char"> <img src="Untitled (1000 x 1000 px).png"> <span class="nametag">MRISTHIS</span> </div> <div class="char"> <img src="lethal.png"> <span class="nametag">Mr Mystery</span> </div> </div>
+    <div id="siting">
+        <div class="char">
+            <img src="Untitled (1000 x 1000 px).png">
+            <span class="nametag">MRISTHIS</span>
+        </div>
+        <div class="char">
+            <img src="lethal.png">
+            <span class="nametag">Mr Mystery</span>
+        </div>
     </div>
 </div>
 
@@ -255,11 +269,13 @@ body {
 
     <div id="carouselTrack">
 
+        <!-- REAL CARD -->
         <div class="cardWrap">
-            <div class="card"><img src="Trail.png"></div>
+            <div class="card real-card"><img src="Trail.png"></div>
             <div class="cardInfo">Trails of the Chamber ◼︎Common</div>
         </div>
 
+        <!-- COMING SOON CARDS -->
         <div class="cardWrap">
             <div class="card"><img src="comingSoon.png"></div>
             <div class="cardInfo">Coming soon</div>
@@ -279,8 +295,6 @@ body {
             <div class="card"><img src="comingSoon.png"></div>
             <div class="cardInfo">Coming soon</div>
         </div>
-
-      
 
     </div>
 </div>
@@ -306,17 +320,12 @@ body {
     <h3 style="color:#fff; text-shadow:2px 2px #000;">How to Purchase</h3>
     <ol style="color:#fff; text-shadow:2px 2px #000; line-height:28px;">
         <li>Email me at awfoxwood@gmail.com or <a style="color: greenyellow;" href="https://groupme.com/join_group/112111893/A7PFoO2H">CLICK HERE!!!</a></li>
-        <li>Tell me if you want a custom card or want to buy cards or packs (will only be available when enough cards are produced)</b>.</li>
+        <li>Tell me if you want a custom card or want to buy cards or packs (will only be available when enough cards are produced)</li>
         <li>You the players grow the card index!</li>
         <li>I'll give you or mail you your cards.</li>
     </ol>
 
-    <p style="color:#fff; text-shadow:2px 2px #000;">
-       
-    </p>
-
 </div>
-
 
 <!-- SPLASH SCRIPT -->
 <script>
@@ -375,8 +384,6 @@ document.getElementById("logo").addEventListener("click", () => {
     }
 });
 </script>
-
-
 
 </body>
 </html>
