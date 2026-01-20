@@ -187,6 +187,28 @@ iframe {
     background: rgba(0,0,0,0.3);
 }
 
+    .char {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.nametag {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
+    image-rendering: pixelated;
+}
+
+
 </style>
 </head>
 
@@ -196,9 +218,7 @@ iframe {
 <div id="header" class="mc-panel">
     <div id="splash"></div>
     <img id="logo" src="Kashm.png">
-    <div id="siting">
-        <img src="Untitled (1000 x 1000 px).png">
-        <img src="lethal.png">
+    <div id="siting"> <div class="char"> <img src="Untitled (1000 x 1000 px).png"> <span class="nametag">MRISTHIS</span> </div> <div class="char"> <img src="lethal.png"> <span class="nametag">Mr Mystery</span> </div> </div>
     </div>
 </div>
 
