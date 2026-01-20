@@ -214,8 +214,6 @@ iframe {
 <!-- MAIN CONTENT -->
 <div id="vaultContainer">
 
-
-
     <!-- SUBMISSION FORM -->
     <h2 style="margin-top:40px; color:white;">Submit a New Log</h2>
 
@@ -229,16 +227,28 @@ iframe {
             marginwidth="0">
         </iframe>
     </div>
+
     <br>
-     <input type="text" id="vaultSearch" placeholder="Search the Grail Diary...">
-    
+
+    <input type="text" id="vaultSearch" placeholder="Search the Grail Diary...">
+
+    <!-- REFRESH BUTTON -->
+    <button id="refreshButton" class="mc-panel" style="
+        font-size: 22px;
+        color: #fff;
+        background: rgba(34,255,34,0.35);
+        border: 4px solid #3a5f0b;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px #000;
+    ">
+        🔄 Refresh Logs
+    </button>
+
     <!-- AUTO-GENERATED PLAYER ENTRIES -->
     <h2 style="margin-top:40px; color:white;">Player Logs</h2>
     <div id="dynamicEntries"></div>
-
-
-
-    
 
 </div>
 
@@ -255,7 +265,7 @@ const splashes = [
 document.getElementById("splash").textContent =
     splashes[Math.floor(Math.random() * splashes.length)];
 
-/* TOGGLE FOR STATIC ENTRIES (LORE) */
+/* TOGGLE FOR STATIC ENTRIES */
 function attachEntryToggles() {
     document.querySelectorAll(".entry").forEach(entry => {
         if (!entry.dataset.bound) {
@@ -279,8 +289,8 @@ document.getElementById("vaultSearch").addEventListener("input", function() {
     });
 });
 
-/* FETCH CSV FROM GOOGLE SHEETS AND BUILD ENTRIES */
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSF_j1TF9Wcp-wfDwImD9duBj7MoblqsNS5VXsG-Ft3dcn63_2xgKa9Q5KUenS8vidoVR6rLTVRElH9/pub?output=csv";
+/* FETCH CSV FROM GOOGLE SHEETS */
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSlMcSCIPe5C-HLxHgWz6rzG4f_-kNV5hkdppSjAbQMtXw3AW5_x_dsN1aw5vzq9DHUxMaNx7bKe7IH/pub?output=csv";
 
 function parseCSV(text) {
     const rows = [];
@@ -327,7 +337,7 @@ function buildEntriesFromCSV(csvText) {
     const container = document.getElementById("dynamicEntries");
     container.innerHTML = "";
 
-    dataRows.reverse().forEach((cols, index) => {
+    dataRows.reverse().forEach(cols => {
         if (cols.every(c => c.trim() === "")) return;
 
         const obj = {};
@@ -363,16 +373,38 @@ function buildEntriesFromCSV(csvText) {
     attachEntryToggles();
 }
 
+/* INITIAL LOAD */
 fetch(csvUrl)
     .then(res => res.text())
-    .then(text => {
-        buildEntriesFromCSV(text);
-    })
+    .then(text => buildEntriesFromCSV(text))
     .catch(err => {
         console.error("Error loading CSV:", err);
-        const container = document.getElementById("dynamicEntries");
-        container.innerHTML = "<div class='mc-panel' style='margin-top:20px;'>Unable to load player logs right now.</div>";
+        document.getElementById("dynamicEntries").innerHTML =
+            "<div class='mc-panel' style='margin-top:20px;'>Unable to load player logs right now.</div>";
     });
+
+/* REFRESH BUTTON */
+document.getElementById("refreshButton").addEventListener("click", () => {
+    const btn = document.getElementById("refreshButton");
+    btn.textContent = "⏳ Refreshing...";
+    btn.disabled = true;
+
+    fetch(csvUrl)
+        .then(res => res.text())
+        .then(text => {
+            buildEntriesFromCSV(text);
+            btn.textContent = "🔄 Refresh Logs";
+            btn.disabled = false;
+        })
+        .catch(err => {
+            console.error("Error refreshing logs:", err);
+            btn.textContent = "❌ Error — Try Again";
+            setTimeout(() => {
+                btn.textContent = "🔄 Refresh Logs";
+                btn.disabled = false;
+            }, 2000);
+        });
+});
 </script>
 
 </body>
