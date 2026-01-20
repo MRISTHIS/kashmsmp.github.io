@@ -198,6 +198,27 @@ body {
     box-shadow: 0 0 25px #6aff3d;
 }
 
+    .char {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.nametag {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
+    image-rendering: pixelated;
+}
+
 
 
 </style>
@@ -209,10 +230,7 @@ body {
     <div id="header" class="mc-panel">
         <div id="splash"></div>
         <img id="logo" src="Kashm.png" alt="Kashm logo">
-        <div id="siting">
-            <img src="Untitled (1000 x 1000 px).png">
-            <img src="lethal.png">
-        </div>
+        <div id="siting"> <div class="char"> <img src="Untitled (1000 x 1000 px).png"> <span class="nametag">PlayerOne</span> </div> <div class="char"> <img src="lethal.png"> <span class="nametag">Lethal</span> </div> </div>
     </div>
 
     <!-- NAVIGATION BAR -->
@@ -334,6 +352,7 @@ body {
 
 </body>
 </html>
+
 
 
 
