@@ -11,7 +11,6 @@ body {
     background-image: url("i3yosyphyvl31.png");
     background-size: cover;
     background-repeat: no-repeat;
-    image-rendering: pixelated;
     background-attachment: fixed;
     cursor: crosshair;
     font-family: "Silkscreen", sans-serif;
@@ -27,7 +26,6 @@ body {
     padding: 20px;
     backdrop-filter: blur(6px);
     box-shadow: 0 0 0 4px #1e3a05, 0 4px 12px rgba(0,0,0,0.4);
-    image-rendering: pixelated;
     margin-bottom: 25px;
 }
 
@@ -39,6 +37,7 @@ body {
     position: relative;
 }
 
+/* LOGO */
 #logo {
     position: absolute;
     top: 50%;
@@ -49,6 +48,7 @@ body {
     z-index: 20;
 }
 
+/* CHARACTERS */
 #siting {
     position: absolute;
     top: -120px;
@@ -57,8 +57,29 @@ body {
     filter: drop-shadow(6px 6px 0 #09010078);
 }
 
-#siting img {
+.char {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.char img {
     width: 150px;
+    height: auto;
+}
+
+.nametag {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
 }
 
 /* SPLASH TEXT */
@@ -76,6 +97,7 @@ body {
     font-size: 25px;
     color: #ffff00;
     text-shadow: 3px 3px #000000;
+    white-space: nowrap;
     animation: splashBounce 1.5s ease-in-out infinite;
     z-index: 33;
 }
@@ -88,7 +110,6 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
-
     background: rgba(34, 255, 34, 0.25);
     border: 4px solid #3a5f0b;
     border-radius: 6px;
@@ -131,28 +152,6 @@ body {
     font-size: 18px;
 }
 
-    .char {
-    position: relative;
-    display: inline-block;
-    margin: 0 20px;
-}
-
-.nametag {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.6);
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 18px;
-    text-shadow: 2px 2px #000;
-    white-space: nowrap;
-    image-rendering: pixelated;
-}
-
-
 </style>
 </head>
 
@@ -161,12 +160,23 @@ body {
 <!-- HEADER -->
 <div id="header" class="mc-panel">
     <div id="splash"></div>
-    <img id="logo" src="Kashm.png">
-     <img id="logo" src="Kashm.png" alt="Kashm logo">
-        <div id="siting"> 
-            <div class="char"> <img src="Untitled (1000 x 1000 px).png"> <span class="nametag">MRISTHIS</span> </div> 
-            <div class="char"> <img src="lethal.png"> <span class="nametag">Mr Mystery</span> </div> </div>
-     
+    <img id="logo" src="Kashm.png" alt="Kashm logo">
+
+    <div id="siting"> 
+        <div class="char">
+            <img src="Untitled (1000 x 1000 px).png">
+            <span class="nametag">MRISTHIS</span>
+        </div>
+
+        <div class="char">
+            <img src="lethal.png">
+            <span class="nametag">Mr Mystery</span>
+        </div>
+
+        <div class="char">
+            <img src="Greyduck432.png">
+            <span class="nametag">Greyduck432</span>
+        </div>
     </div>
 </div>
 
