@@ -38,15 +38,15 @@ body {
     position: relative;
 }
 
+/* LOGO */
 #logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 380px;
-    image-rendering: pixelated;
-    z-index: 20;
     filter: drop-shadow(4px 4px 0 #C70C02);
+    z-index: 20;
 }
 
 /* SPLASH TEXT */
@@ -68,7 +68,7 @@ body {
     z-index: 33;
 }
 
-/* CHARACTER */
+/* CHARACTER ROW */
 #siting {
     position: absolute;
     top: -120px;
@@ -77,9 +77,30 @@ body {
     filter: drop-shadow(6px 6px 0 #09010078);
 }
 
-#siting img {
+.char {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.char img {
     width: 150px;
+    height: auto;
     image-rendering: pixelated;
+}
+
+.nametag {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
 }
 
 /* NAVBAR */
@@ -179,35 +200,13 @@ body {
     background: #3a0000;
 }
 
-/* IFRAME (FORM) STYLING */
+/* IFRAME */
 iframe {
     border-radius: 6px;
     border: 4px solid #3a5f0b;
     box-shadow: 0 0 0 4px #1e3a05;
     background: rgba(0,0,0,0.3);
 }
-
-    .char {
-    position: relative;
-    display: inline-block;
-    margin: 0 20px;
-}
-
-.nametag {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.6);
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 18px;
-    text-shadow: 2px 2px #000;
-    white-space: nowrap;
-    image-rendering: pixelated;
-}
-
 
 </style>
 </head>
@@ -218,10 +217,22 @@ iframe {
 <div id="header" class="mc-panel">
     <div id="splash"></div>
     <img id="logo" src="Kashm.png">
+
     <div id="siting"> 
-        <div class="char"> <img src="Untitled (1000 x 1000 px).png"> <span class="nametag">MRISTHIS</span> </div> 
-        <div class="char"> <img src="lethal.png"> <span class="nametag">Mr Mystery</span> </div> </div>
-   
+        <div class="char">
+            <img src="Untitled (1000 x 1000 px).png">
+            <span class="nametag">MRISTHIS</span>
+        </div>
+
+        <div class="char">
+            <img src="lethal.png">
+            <span class="nametag">Mr Mystery</span>
+        </div>
+
+        <div class="char">
+            <img src="Greyduck432.png">
+            <span class="nametag">Greyduck432</span>
+        </div>
     </div>
 </div>
 
@@ -239,24 +250,21 @@ iframe {
 
     <!-- SUBMISSION FORM -->
     <h2 style="margin-top:40px; color:white;">Submit a New Log</h2>
+
     <div class="mc-panel">
-    <div style= color:white;">
-        When writing your log, please keep everything on one line and avoid bullets or special formatting so the Grail Diary reads your entry as a single complete log.
-    </div>
+        <div style="color:white;">
+            When writing your log, please keep everything on one line and avoid bullets or special formatting so the Grail Diary reads your entry as a single complete log.
+        </div>
     </div>
 
-    <br>
-    <br>
-
+    <br><br>
 
     <div class="mc-panel">
         <iframe 
             src="https://docs.google.com/forms/d/e/1FAIpQLScinAR0oRoUt8S2myirOFmV-Gy-dqh8e4QEdGdT5nTvXFViBw/viewform?embedded=true" 
             width="100%" 
             height="1044" 
-            frameborder="0" 
-            marginheight="0" 
-            marginwidth="0">
+            frameborder="0">
         </iframe>
     </div>
 
@@ -382,7 +390,6 @@ function buildEntriesFromCSV(csvText) {
         const date = obj["date of entry"] || obj["date"] || "";
         const log = obj["log entry"] || obj["entry"] || obj["log"] || "";
 
-        /* ✅ Only show rows that have BOTH a player and a log */
         if (!player || !log) return;
 
         const entryDiv = document.createElement("div");
