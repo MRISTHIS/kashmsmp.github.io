@@ -68,7 +68,7 @@ body {
     position: relative;
 }
 
-/* CHARACTER */
+/* CHARACTER ROW */
 #siting {
     position: absolute;
     top: -120px;
@@ -77,8 +77,30 @@ body {
     filter: drop-shadow(6px 6px 0 #09010078);
 }
 
-#siting img {
+.char {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.char img {
     width: 150px;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.nametag {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px #000;
+    white-space: nowrap;
 }
 
 /* NAVBAR */
@@ -89,7 +111,6 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
-
     background: rgba(34, 255, 34, 0.25);
     border: 4px solid #3a5f0b;
     border-radius: 6px;
@@ -158,7 +179,6 @@ body {
     opacity: 1;
 }
 
-/* Default for Coming Soon cards */
 .card img {
     width: 100%;
     height: 100%;
@@ -166,7 +186,6 @@ body {
     image-rendering: pixelated;
 }
 
-/* Real cards show full artwork */
 .real-card img {
     image-rendering: auto;
     object-fit: contain;
@@ -193,43 +212,17 @@ body {
     z-index: 10;
 }
 
-#leftArrow {
-    left: 15px;
-}
-
-#rightArrow {
-    right: 15px;
-}
+#leftArrow { left: 15px; }
+#rightArrow { right: 15px; }
 
 .carouselArrow:hover {
     transform: translateY(-50%) scale(1.2);
 }
 
-#honor{
+#honor {
     color: #ec0c00;
     text-shadow: 2px 2px #000;
     font-size: 15px;
-}
-
-.char {
-    position: relative;
-    display: inline-block;
-    margin: 0 20px;
-}
-
-.nametag {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,0.6);
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 18px;
-    text-shadow: 2px 2px #000;
-    white-space: nowrap;
-    image-rendering: pixelated;
 }
 
 </style>
@@ -241,17 +234,23 @@ body {
 <div id="header" class="mc-panel">
     <div id="splash"></div>
     <img id="logo" src="Kashm.png">
+
     <div id="siting">
         <div class="char">
             <img src="Untitled (1000 x 1000 px).png">
             <span class="nametag">MRISTHIS</span>
         </div>
+
         <div class="char">
             <img src="lethal.png">
             <span class="nametag">Mr Mystery</span>
         </div>
+
+        <div class="char">
+            <img src="Greyduck432.png">
+            <span class="nametag">Greyduck432</span>
+        </div>
     </div>
-  
 </div>
 
 <!-- NAVBAR -->
@@ -308,21 +307,21 @@ body {
 
     <p style="color:#fff; text-shadow:2px 2px #000;">
         Want to grow your collection? Want your custom Kashm SMP card?<br>
-        <div id="honor">(This is an honor system, pay what you feel there worth. <br>If you want I will give you your cards free of charge! <br>The prices below are a suggestion.)</div>
+        <div id="honor">(This is an honor system, pay what you feel they’re worth. <br>If you want I will give you your cards free of charge! <br>The prices below are a suggestion.)</div>
     </p>
 
     <ul style="color:#fff; text-shadow:2px 2px #000; line-height:28px;">
         <li><b>Common Cards:</b> $1 each</li>
-        <li><b>Rare Cards:</b> $2 each </li>
+        <li><b>Rare Cards:</b> $2 each</li>
         <li><b>Epic Cards:</b> $3 each</li>
-        <li><b>Legendary Cards:</b> *only available through sever compations and events*</li>
-        <li><b>Mystery Pack (5 random cards):</b> $5 *unavailable</li>
+        <li><b>Legendary Cards:</b> *only available through server competitions and events*</li>
+        <li><b>Mystery Pack (5 random cards):</b> $5 *unavailable*</li>
     </ul>
 
     <h3 style="color:#fff; text-shadow:2px 2px #000;">How to Purchase</h3>
     <ol style="color:#fff; text-shadow:2px 2px #000; line-height:28px;">
         <li>Email me at awfoxwood@gmail.com or <a style="color: greenyellow;" href="https://groupme.com/join_group/112111893/A7PFoO2H">CLICK HERE!!!</a></li>
-        <li>Tell me if you want a custom card or want to buy cards or packs (will only be available when enough cards are produced)</li>
+        <li>Tell me if you want a custom card or want to buy cards or packs</li>
         <li>You the players grow the card index!</li>
         <li>I'll give you or mail you your cards.</li>
     </ol>
@@ -353,7 +352,7 @@ const cards = Array.from(document.querySelectorAll(".card"));
 let index = 0;
 
 function updateCarousel() {
-    const cardWidth = 260; // card width + gap
+    const cardWidth = 260;
     const offset = -index * cardWidth + (track.parentElement.clientWidth - cardWidth) / 2;
     track.style.transform = `translateX(${offset}px)`;
 
