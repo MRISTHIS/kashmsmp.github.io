@@ -310,8 +310,9 @@ body {
         <h2 style="color:#fff; text-shadow:2px 2px #000;">Kahsm SMP has been live for:</h2>
         <p id="serverUptime" style="font-size:28px; color:#fff; text-shadow:2px 2px #000;"></p>
     </div>
-
+<div class="end-btn-container">
     <button class="end-btn"><a href="index.html">the_end.html</a></button>
+</div>
 
 <style>
   @import url('https://googleapis.com');
@@ -338,7 +339,15 @@ body {
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     outline: none;
   }
+    
 
+    .end-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Gives the button space to sit in */
+    width: 100%;
+  }
   /* Hover effect: Glow intensifies and button raises */
   .end-btn:hover {
     color: #ffffff;
