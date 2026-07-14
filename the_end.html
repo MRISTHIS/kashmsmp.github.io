@@ -265,15 +265,16 @@ iframe {
 </div>
 
 
-    <!-- DRAGON EGG PRIZE -->
-<div class="egg-container">
+  <div class="egg-container">
     <div class="dragon-egg" onclick="handleDragonClick()">
         <img src="https://minecraft.wiki/images/thumb/Ender_Dragon.gif/250px-Ender_Dragon.gif?fb9ba">
     </div>
+
     <div id="dragonScoreDisplay" style="color: #dfb2ff; text-shadow: 2px 2px #000; margin-top: 10px; font-size: 18px;">
-        Dragon Clicks: <span id="dragonScore">0</span>
+        Global Dragon Clicks: <span id="dragonScore">0</span>
     </div>
 </div>
+
 
 
     <!-- POEM / END STORY LOG BOX -->
@@ -391,27 +392,35 @@ document.getElementById("splash").textContent = dragonSplashes[Math.floor(Math.r
 
 </script>
 <script>
-    let dragonScore = 0;
+const API_URL = "https://script.google.com/macros/s/AKfycbxAfNDQjpZFglQUE-YXL0ceafvVZbdi-hwrZk5vbCQZGe2Iu3p0uyNURk5UKHriQzCkWQ/exec";
 
-    function handleDragonClick() {
-        // Increase global score
-        dragonScore++;
-
-        // Update text
-        const scoreSpan = document.getElementById('dragonScore');
-        scoreSpan.textContent = dragonScore;
-
-        // Optional: small visual feedback
-        const egg = document.querySelector('.dragon-egg');
-        egg.style.transform = 'scale(1.05)';
-        setTimeout(() => {
-            egg.style.transform = 'scale(1)';
-        }, 100);
-
-        // If you want sound, you can hook it here:
-        // playEggSound();
+async function loadScore() {
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        document.getElementById("dragonScore").textContent = data.score;
+    } catch (err) {
+        console.error("Failed to load score", err);
     }
+}
+
+async function handleDragonClick() {
+    try {
+        const res = await fetch(API_URL, { method: "POST" });
+        const data = await res.json();
+        document.getElementById("dragonScore").textContent = data.score;
+
+        const egg = document.querySelector('.dragon-egg');
+        egg.style.transform = 'scale(1.1)';
+        setTimeout(() => egg.style.transform = 'scale(1)', 120);
+    } catch (err) {
+        console.error("Failed to update score", err);
+    }
+}
+
+loadScore();
 </script>
+
 
 </body>
 </html>
