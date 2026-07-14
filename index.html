@@ -219,6 +219,34 @@ body {
     image-rendering: pixelated;
 }
 
+    /* THE PORTAL ACTION BUTTON */
+.portal-wrapper {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.portal-link {
+    display: inline-block;
+    padding: 15px 35px;
+    background: linear-gradient(45deg, #4a0e73, #7b1fa2);
+    border: 4px solid #26073d;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 24px;
+    text-shadow: 2px 2px #000;
+    text-decoration: none;
+    box-shadow: 0 0 20px #7b1fa2, inset 0 0 10px rgba(255,255,255,0.3);
+    transition: 0.2s;
+}
+
+.portal-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 35px #d500f9;
+    background: linear-gradient(45deg, #7b1fa2, #d500f9);
+}
+
+
 </style>
 </head>
 
@@ -310,65 +338,11 @@ body {
         <h2 style="color:#fff; text-shadow:2px 2px #000;">Kahsm SMP has been live for:</h2>
         <p id="serverUptime" style="font-size:28px; color:#fff; text-shadow:2px 2px #000;"></p>
     </div>
-<div class="end-btn-container">
-   <button class="end-btn"><a href="the_end.html">enter the end</a> </button>
-</div>
 
-<style>
-  @import url('https://googleapis.com');
 
-  .end-btn {
-    --purple-glow: rgba(162, 23, 232, 0.6);
-    --border-color: #5c1894;
-    --text-color: #dfb2ff;
-    
-    position: relative;
-    padding: 16px 32px;
-    font-size: 16px;
-    color: var(--text-color);
-    background: linear-gradient(135deg, #1c082b 0%, #0d0214 100%);
-    border: 4px solid var(--border-color);
-    box-shadow: 
-      0 0 0 4px #0a0110,
-      0 8px 0 0 #000,
-      0 0 20px var(--purple-glow);
-    text-shadow: 2px 2px 0px #000;
-    cursor: pointer;
-    image-rendering: pixelated;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-    outline: none;
-  }
-    
-
-    .end-btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px; /* Gives the button space to sit in */
-    width: 100%;
-  }
-  /* Hover effect: Glow intensifies and button raises */
-  .end-btn:hover {
-    color: #ffffff;
-    --border-color: #923df2;
-    --purple-glow: rgba(186, 74, 255, 0.9);
-    box-shadow: 
-      0 0 0 4px #0a0110,
-      0 12px 0 0 #000,
-      0 0 30px var(--purple-glow);
-    transform: translateY(-4px);
-  }
-
-  /* Click effect: Pushes down visually */
-  .end-btn:active {
-    box-shadow: 
-      0 0 0 4px #0a0110,
-      0 2px 0 0 #000,
-      0 0 15px var(--purple-glow);
-    transform: translateY(6px);
-  }
-</style>
-
+    <div class="portal-wrapper">
+    <a href="the_end.html" class="portal-link"> Enter the END </a>
+    </div>
 
     <!-- SPLASH TEXT SCRIPT -->
     <script>
