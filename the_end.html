@@ -271,8 +271,7 @@ iframe {
     </div>
 
     <div id="dragonScoreDisplay" style="color: #dfb2ff; text-shadow: 2px 2px #000; margin-top: 10px; font-size: 18px;">
-        Global Dragon Clicks: <span id="dragonScore">0</span>
-    </div>
+    Global Dragon Clicks: <span id="dragonScore">0</span>
 </div>
 
 
@@ -386,6 +385,9 @@ const dragonSplashes = [
 ];
 document.getElementById("splash").textContent = dragonSplashes[Math.floor(Math.random() * dragonSplashes.length)];
 
+
+</script>
+<script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxAfNDQjpZFglQUE-YXL0ceafvVZbdi-hwrZk5vbCQZGe2Iu3p0uyNURk5UKHriQzCkWQ/exec";
 
 async function loadScore() {
