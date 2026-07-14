@@ -266,11 +266,15 @@ iframe {
 
 
     <!-- DRAGON EGG PRIZE -->
-    <div class="egg-container">
-        <div class="dragon-egg" onclick="playEggSound()"><img src="https://minecraft.wiki/images/thumb/Ender_Dragon.gif/250px-Ender_Dragon.gif?fb9ba"></div>
-        <div style="color: #dfb2ff; text-shadow: 2px 2px #000; margin-top: 10px; font-size: 18px;">
-        </div>
+<div class="egg-container">
+    <div class="dragon-egg" onclick="handleDragonClick()">
+        <img src="https://minecraft.wiki/images/thumb/Ender_Dragon.gif/250px-Ender_Dragon.gif?fb9ba">
     </div>
+    <div id="dragonScoreDisplay" style="color: #dfb2ff; text-shadow: 2px 2px #000; margin-top: 10px; font-size: 18px;">
+        Dragon Clicks: <span id="dragonScore">0</span>
+    </div>
+</div>
+
 
     <!-- POEM / END STORY LOG BOX -->
     <div class="mc-panel" id="endCreditsBox">
@@ -381,20 +385,32 @@ const dragonSplashes = [
 ];
 document.getElementById("splash").textContent = dragonSplashes[Math.floor(Math.random() * dragonSplashes.length)];
 
-function playEggSound() {
-    // Prompt the user for the password
-    let password = prompt("Enter the password to unlock the dragon egg:");
 
-    // Check if the password is correct
-    if (password === "The End?-The End-The Beginning?-The Beginning") {
-        alert("Access granted! The dragon egg crackles with energy.");
-    } else {
-        alert("Incorrect password.");
+
+
+
+</script>
+<script>
+    let dragonScore = 0;
+
+    function handleDragonClick() {
+        // Increase global score
+        dragonScore++;
+
+        // Update text
+        const scoreSpan = document.getElementById('dragonScore');
+        scoreSpan.textContent = dragonScore;
+
+        // Optional: small visual feedback
+        const egg = document.querySelector('.dragon-egg');
+        egg.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            egg.style.transform = 'scale(1)';
+        }, 100);
+
+        // If you want sound, you can hook it here:
+        // playEggSound();
     }
-}
-
-
-
 </script>
 
 </body>
