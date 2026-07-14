@@ -376,10 +376,18 @@ const dragonSplashes = [
 ];
 document.getElementById("splash").textContent = dragonSplashes[Math.floor(Math.random() * dragonSplashes.length)];
 
-// Simple interactivity trick for clicking the dragon egg
 function playEggSound() {
-    alert("Hi!");
+    // Prompt the user for the password
+    let password = prompt("Enter the password to unlock the dragon egg:");
+
+    // Check if the password is correct
+    if (password === "The End?-The End-The Beginning?-The Beginning") {
+        alert("Access granted! The dragon egg crackles with energy.");
+    } else {
+        alert("Incorrect password.");
+    }
 }
+
 
 
 </script>
