@@ -74,18 +74,26 @@ body {
 }
 
 /* CHARACTER SITTING ON HEADER */
+
 #siting {
     position: absolute;
     top: -120px;
     left: 50%;
-    margin: -120px auto 50% auto;
     transform: translateX(-50%);
     filter: drop-shadow(6px 6px 0 #09010078);
+    
+    /* Fixes the squishing/wrapping issue */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 #siting img {
     width: 150px;
     image-rendering: pixelated;
+    flex-shrink: 0; /* Prevents the images themselves from flattening */
 }
 
 /* NAVIGATION BAR */
